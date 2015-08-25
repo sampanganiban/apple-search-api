@@ -32,7 +32,41 @@ $(document).ready(function(){
 				// Loop over each item in the result set
 				$(dataFromServer.results).each(function(i){
 
-					$('#search-results').append('<img src="'+dataFromServer.results[i].artworkUrl100+'">');
+					// Make life easier
+					var product = dataFromServer.results[i];
+
+					// Create a div
+					var div = $('<div class="large-4 columns">');
+
+					// Create the preview image
+					var image = $('<img src="'+product.artworkUrl100+'">');
+					
+					// Add the preview image to the div
+					$(div).append(image);
+
+					// Create a preview element suitable for the preview file format
+					switch( product.kind ) {
+
+						case 'song':
+						case 'audiobook':
+						case 'music':
+							var preview = $('<audio controls preload="none" src="'+product.previewUrl+'">');
+						break;
+
+						case 'musicVideo':
+						case 'feature-movie':
+							var preview = $('<video controls preload="none" src="'+product.previewUrl+'">');
+						break;
+					}
+
+					// Add the preview to the div
+					$(div).append(preview);
+
+					// Add the new product div to the page
+					$('#search-results').append(div);
+
+
+					//$('#search-results').append('<img src="'+dataFromServer.results[i].artworkUrl100+'">');
 
 				});
 				
