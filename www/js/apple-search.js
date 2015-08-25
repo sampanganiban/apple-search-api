@@ -26,6 +26,9 @@ $(document).ready(function(){
 			success: function( dataFromServer ){
 				console.log( dataFromServer );
 
+				// Clear the search results div
+				$('#search-results').html('');
+
 				// Loop over each item in the result set
 				$(dataFromServer.results).each(function(i){
 
