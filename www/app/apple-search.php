@@ -4,7 +4,7 @@
 require '../../config.php';
 
 // Get the search query
-$searchQuery = $_GET['searchQuery'];
+$searchQuery = urlencode($_GET['searchQuery']);
 
 // Start a connection using cURL
 $connection = curl_init();
