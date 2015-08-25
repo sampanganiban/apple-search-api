@@ -26,6 +26,12 @@ $(document).ready(function(){
 			success: function( dataFromServer ){
 				console.log( dataFromServer );
 
+				// Loop over each item in the result set
+				$(dataFromServer.results).each(function(i){
+
+					$('#search-results').append('<img src="'+dataFromServer.results[i].artworkUrl100+'">');
+
+				});
 				
 			},
 			error: function(){
