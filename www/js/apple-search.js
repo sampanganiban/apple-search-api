@@ -15,12 +15,16 @@ $(document).ready(function(){
 
 		}
 
+		// Get media type
+		var mediaType = $('#media-type').val();
+
 		// AJAX
 		$.ajax({
 			url: 'app/apple-search.php',
 			type: 'get',
 			data: {
-				searchQuery: query
+				searchQuery: query,
+				media: mediaType
 			},
 			beforeSend: function(){},
 			success: function( dataFromServer ){
@@ -39,7 +43,7 @@ $(document).ready(function(){
 					var div = $('<div class="large-4 columns">');
 
 					// Create the preview image
-					var image = $('<img src="'+product.artworkUrl100+'">');
+					var image = $('<img src="'+product.artworkUrl100+'" class="medium-3 columns">');
 					
 					// Add the preview image to the div
 					$(div).append(image);
@@ -50,12 +54,12 @@ $(document).ready(function(){
 						case 'song':
 						case 'audiobook':
 						case 'music':
-							var preview = $('<audio controls preload="none" src="'+product.previewUrl+'">');
+							var preview = $('<audio controls preload="none" class="medium-9 columns"src="'+product.previewUrl+'">');
 						break;
 
-						case 'musicVideo':
+						case 'music-video':
 						case 'feature-movie':
-							var preview = $('<video controls preload="none" src="'+product.previewUrl+'">');
+							var preview = $('<video controls preload="none" class="medium-9 columns" src="'+product.previewUrl+'">');
 						break;
 					}
 
